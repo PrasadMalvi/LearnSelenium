@@ -30,9 +30,4 @@ public class ClassBrowser {
 				System.out.println(driver.getCurrentUrl());
 				driver.quit();
 			}
-
-		}
-
 	}
-
-}

@@ -1,5 +1,8 @@
 package GlowTest;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +21,7 @@ public class ElementClick {
 		//driver.findElement(By.className("signup-link")).click();
 		 
 		System.out.println(brUtil.getPageTitle());
-		
+				
 		By userName = By.name("username");
 		By emailId = By.name("email");
 		By password = By.name("password");
