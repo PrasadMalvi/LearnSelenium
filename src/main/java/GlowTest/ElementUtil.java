@@ -7,15 +7,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ElementUtil {
 	private WebDriver driver;
-	
+	private Actions action;
 	
 	//Created An utility for an Elements By Passing the WebDriver
 	public ElementUtil(WebDriver driver) {
 		this.driver =  driver;
+		action = new Actions(driver);
 	}
 	
 	//To get a Multiple Element
@@ -235,4 +237,55 @@ public class ElementUtil {
 			
 		}
 	}
+	
+	
+	/*************************Action Util*************************/
+	
+	
+	//Action Class which Maintain 2 lever of parent and child using By locator
+	public void ParentChildMenu(By parentMenu, By childMenu) throws InterruptedException {
+		action.moveToElement(getElement(parentMenu)).perform();
+		Thread.sleep(3000);
+		doClick(childMenu);
+	}
+	
+	//Action Class which Maintain 2 lever of parent and child using String
+	public void ParentChildMenu(String parentMenu, String childMenu) throws InterruptedException {
+		action.moveToElement(getElement(By.xpath("//*[text()='"+parentMenu+"']"))).perform();
+		Thread.sleep(3000);
+		doClick(By.xpath("//*[tex()='"+childMenu+"']"));
+	}
+	
+	//For 4 Levels ACtion
+	public void ParentChildMenu(By level1, By level2, By level3, By level4) throws InterruptedException {
+		doClick(level1);
+		action.moveToElement(getElement(level2)).perform();
+		Thread.sleep(3000);
+		action.moveToElement(getElement(level3)).perform();
+		Thread.sleep(10000);
+		getElement(level4).click();
+	}
+	
+	// to click on any option using action
+	public void doActionClick(By locator) {
+		action.click(getElement(locator)).perform();
+	}
+	
+	// To send values of text to any files using action
+	public void doActionSendKeys(By locator, String value) {
+		action.sendKeys(driver.findElement(locator), value).perform();
+	}
+	
+	//to Send the keys with an specific pause time
+	public void doActionSendKeysWithPause(By locator, String value, long pauseTime) {
+		Actions action = new Actions(driver);
+		char ch[] = value.toCharArray();
+		 
+		for(char c:ch) {
+			action.sendKeys(getElement(locator), String.valueOf(c)).pause(pauseTime).perform();
+			
+		}
+	}
+	
+	
 }

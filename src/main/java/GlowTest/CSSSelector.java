@@ -74,8 +74,25 @@ public class CSSSelector {
 		//No BackTracking
 		
 		// Sibling
-		
+		// preceding  not allowed + only following is allowed
 		// label[for='input-email'] + input
+		
+		// label[for='input-email'] ~ input
+		
+		
+		// Indexing in CSS
+		// select#formcountry > option:nth-of-type(2) - 2nd 
+		// select#formcountry > option:nth-of-type(n) -- all
+		
+		// select#formcountry > option:first-child
+		// select#formcountry > option:last-child
+		// select#formcountry > option:nth-child(5)
+		// select#formcountry > option:nth-last-child(5)
+		// select#formcountry > option:nth-child(odd)
+		// select#formcountry > option:nth-child(even)
+		// select#formcountry > option:nth-child(n+4) to start from 4th
+		
+		// input#username,input#passowrd,button#loginbutton
 	}
 
 }
